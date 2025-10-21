@@ -14,7 +14,7 @@ export class Puntuacion{
     }
 
     incrementPuntos(points){
-        this.score=points;
+        this.score+=points;
          this.scoreText.setText('PUNTOS:' + this.score);
 }
     }

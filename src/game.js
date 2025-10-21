@@ -28,7 +28,7 @@ export class Game extends Phaser.Scene {
     this.add.image(500, 300, 'background');
     this.animalZorro = this.physics.add.image(400, 90, 'animal');
     this.nivelNegro = this.physics.add.image(400, 510, 'nivel').setImmovable();
-    this.pelotaRebote = this.physics.add.image(400, 10, 'pelota');
+    this.pelotaRebote = this.physics.add.image(400, 475, 'pelota');
     this.pelotaRebote.setCollideWorldBounds(true);
 
     this.add.sprite(40,40,'diamanteAzul');
@@ -46,11 +46,11 @@ export class Game extends Phaser.Scene {
     
     
  //cambiar el rumbo de la pelota 
- let velocity = 100 * Phaser.Math.Between(1.3, 2);
-if (Phaser.Math.Between(0, 10) > 5) {
-  velocity = 0 - velocity;
-}
-this.pelotaRebote.setVelocity(velocity, 10);
+ //let velocity = 100 * Phaser.Math.Between(1.3, 2);
+//if (Phaser.Math.Between(0, 10) > 5) {
+  //velocity = 0 - velocity;
+//}
+//this.pelotaRebote.setVelocity(velocity, 10);
 
 
 this.physics.add.collider(this.pelotaRebote, this.nivelNegro ,this.impactoPlataform,null,this);
@@ -58,32 +58,36 @@ this.pelotaRebote.setBounce(1);
 
      this.cursors=this.input.keyboard.createCursorKeys();
 
-
 //animacion
-
-
-
-
-
-
-
 
   }
 
-impactoPlataform() {
-   this.Puntuacion.incrementPuntos(1);
-  
+impactoPlataform(pelotaRebote,nivelNegro) {
+ this.Puntuacion.incrementPuntos(1);
+ let impactoRelativo=pelotaRebote.x-nivelNegro.x;
+ console.log(impactoRelativo);
+if(impactoRelativo<0.1 && impactoRelativo>-0.1){
+  pelotaRebote.setVelocityX(Phaser.Math.Between(-10,10))
+ } else{
+    pelotaRebote.setVelocityX(10*impactoRelativo);
+  }
 }
+ 
+  
+
 
 update(){
   if (this.cursors.left.isDown){
     this.nivelNegro.setVelocityX(-300);
+    this.pelotaRebote.setVelocityX(-300);
   }
   else if(this.cursors.right.isDown){
      this.nivelNegro.setVelocityX(300);
+     this.pelotaRebote.setVelocityX(300);
   }
   else {
     this.nivelNegro.setVelocity(0);
+    this.pelotaRebote.setVelocityX(0);
   }
 
 if (this.pelotaRebote.y > 600) {

@@ -1,4 +1,4 @@
-
+import { Puntuacion } from "./Puntuacion.js";
 export class Game extends Phaser.Scene {
 
   constructor() {
@@ -6,7 +6,7 @@ export class Game extends Phaser.Scene {
   }
 
   init() {
-  this.score = 0;
+  this.Puntuacion=new Puntuacion(this);
 }
 
   preload() {
@@ -33,7 +33,7 @@ export class Game extends Phaser.Scene {
 
     this.add.sprite(40,40,'diamanteAzul');
 
-
+ this.Puntuacion.createTexto();
 
 
     this.animalZorro.body.allowGravity=false;
@@ -43,12 +43,7 @@ export class Game extends Phaser.Scene {
      this.imagenFinal.visible=false;
 
 
-    this.scoreText = this.add.text(16, 16, 'PUNTOS: 0', { 
-  fontSize: '20px', 
-  fill: '#fff', 
-  fontFamily: 'verdana, arial, sans-serif' 
-});
-
+    
     
  //cambiar el rumbo de la pelota 
  let velocity = 100 * Phaser.Math.Between(1.3, 2);
@@ -76,10 +71,9 @@ this.pelotaRebote.setBounce(1);
   }
 
 impactoPlataform() {
-    this.score++;
-   this.scoreText.setText('PUNTOS:' + this.score);
+   this.Puntuacion.incrementPuntos(1);
+  
 }
-
 
 update(){
   if (this.cursors.left.isDown){

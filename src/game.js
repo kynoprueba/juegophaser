@@ -25,7 +25,9 @@ export class Game extends Phaser.Scene {
     // boton funcionando
     this.load.image('boton1', './assets/boton.png');
     //
-    //boton de prueba
+
+
+
   }
 
 
@@ -104,7 +106,7 @@ export class Game extends Phaser.Scene {
     // Add click event
     button2.on('pointerdown', () => {
       console.log('Button clicked!');
-       this.scene.start('primerEscena');
+       this.scene.start('animacion');
     });
 
     button2.on('pointerover', () => {

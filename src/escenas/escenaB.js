@@ -1,9 +1,16 @@
+import { Boton } from "./boton.js";
 export class EscenaB extends Phaser.Scene {
     constructor() {
         super('animacion');
     }
+
+
+
     preload() {
         this.load.atlas('pajaro', './assets/pajarito.png', './assets/pajarito.json');
+         this.load.spritesheet('boton_interactivo','./assets/boton3.png',
+      {frameWidth:100,frameHeight:25});
+
     }
     create() {
         console.log('cargamos animacion');
@@ -29,7 +36,16 @@ export class EscenaB extends Phaser.Scene {
     });
     this.pajaro.play('ave');
 
+  let botonfinal = new Boton(this, 400, 300, 'boton_interactivo', () => {
+        console.log('Botón clickeado!');
+        this.scene.start('game'); // Acción del botón
+    });
+
+
     }
+
+
+ 
     update() {
 
     }

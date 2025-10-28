@@ -17,6 +17,11 @@ export class Game extends Phaser.Scene {
     this.load.image('credito', './assets/final.png');
     this.load.image('nivel', './assets/piso.png');
     this.load.image('pelota', './assets/bola.png');
+    //cargar boton desde componente
+    //this.load.spritesheet('boton_interactivo','./assets/boton3.png',
+      //{frameWidth:200,frameHeight:25});
+
+
     //carga sprite
     this.load.spritesheet('diamanteAzul', './assets/diamante.png',
       { frameWidth: 48, frameHeight: 48 }
